@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-23",
+  "upstream": {
+    "repository": "https://github.com/juicesharp/rpiv-mono.git",
+    "directory": "packages/rpiv-todo",
+    "commit": "afc21bc25f7d07cae9fb3103dc309240a16b9f49",
+    "package": "@juicesharp/rpiv-todo",
+    "version": "2.13.8",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 juicesharp"
+  },
+  "npm": {
+    "metadataUrl": "https://registry.npmjs.org/@juicesharp%2frpiv-todo/2.13.8",
+    "gitHead": "afc21bc25f7d07cae9fb3103dc309240a16b9f49",
+    "tarball": "https://registry.npmjs.org/@juicesharp/rpiv-todo/-/rpiv-todo-2.13.8.tgz",
+    "integrity": "sha512-PY+vo3fDZdccNwKXyDtdR4fOqiZr1NYph/UaS49mr1DLNn2lpirtWRc1577uS5/3r5NkZVM3owWdsy6ewxmPCw==",
+    "shasum": "89eb89e961653bc669a3bc06c95479349c1d689d"
+  },
+  "verifiedUpstreamFiles": {
+    "LICENSE": {
+      "sha256": "25d0d5e4e54033f939a9657109044f1d71a0b6e8db9adc400456ca9190df3fb1",
+      "retainedAs": "licenses/rpiv-todo-MIT.txt"
+    },
+    "package.json": {
+      "sha256": "854847148029d45f238106a0bf34b57a2c65a61fb7f2a69309eb50a7559315e2",
+      "retainedAs": null
+    }
+  },
+  "importStatus": {
+    "runtimeSourceImported": false,
+    "testsImported": false,
+    "gitHistoryImported": false,
+    "retainedUpstreamFiles": [
+      "licenses/rpiv-todo-MIT.txt"
+    ]
+  },
+  "verification": {
+    "npmMetadataRetrieved": true,
+    "npmGitHeadMatchesRecordedCommit": true,
+    "commitPackageVersionVerified": true,
+    "commitPackageLicenseVerified": true,
+    "npmTarballDownloaded": false,
+    "npmTarballIntegrityVerified": false
+  }
+}
