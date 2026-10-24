@@ -8,6 +8,7 @@ coverage/
 # Local development and runtime state
 .local/
 .artifacts/
+.test-artifacts/
 .pi/
 .env
 .env.*
