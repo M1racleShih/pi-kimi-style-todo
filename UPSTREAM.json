@@ -1,21 +1,25 @@
 {
-  "schemaVersion": 1,
-  "recordedAt": "2026-10-23",
+  "schemaVersion": 2,
+  "recordedAt": "2026-10-27",
+  "initialUpstream": {
+    "version": "2.13.8",
+    "commit": "afc21bc25f7d07cae9fb3103dc309240a16b9f49"
+  },
   "upstream": {
     "repository": "https://github.com/juicesharp/rpiv-mono.git",
     "directory": "packages/rpiv-todo",
-    "commit": "afc21bc25f7d07cae9fb3103dc309240a16b9f49",
+    "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
     "package": "@juicesharp/rpiv-todo",
-    "version": "2.13.8",
+    "version": "2.15.0",
     "license": "MIT",
     "copyright": "Copyright (c) 2026 juicesharp"
   },
   "npm": {
-    "metadataUrl": "https://registry.npmjs.org/@juicesharp%2frpiv-todo/2.13.8",
-    "gitHead": "afc21bc25f7d07cae9fb3103dc309240a16b9f49",
-    "tarball": "https://registry.npmjs.org/@juicesharp/rpiv-todo/-/rpiv-todo-2.13.8.tgz",
-    "integrity": "sha512-PY+vo3fDZdccNwKXyDtdR4fOqiZr1NYph/UaS49mr1DLNn2lpirtWRc1577uS5/3r5NkZVM3owWdsy6ewxmPCw==",
-    "shasum": "89eb89e961653bc669a3bc06c95479349c1d689d"
+    "metadataUrl": "https://registry.npmjs.org/@juicesharp%2frpiv-todo/2.15.0",
+    "gitHead": "ce6d3530410812ca504ec294995581a52170f9e1",
+    "tarball": "https://registry.npmjs.org/@juicesharp/rpiv-todo/-/rpiv-todo-2.15.0.tgz",
+    "integrity": "sha512-8WfYssdgQgSWzFNsRzdw5Z6ZJIjO2ecM/YqEzYpR/ore+Hh5aNmafGVy94uFbIofAv2wGGitx5e3J/ucRrViXQ==",
+    "shasum": "d614cedc77fd57e8d2bd1da5c55994a1881b38d7"
   },
   "verifiedUpstreamFiles": {
     "LICENSE": {
@@ -23,11 +27,17 @@
       "retainedAs": "licenses/rpiv-todo-MIT.txt"
     },
     "package.json": {
-      "sha256": "854847148029d45f238106a0bf34b57a2c65a61fb7f2a69309eb50a7559315e2",
+      "sha256": "971002e16d3f2c4ad20244d45eae4b4b391444974ec82286a23d4fe07e01e2fc",
       "retainedAs": null
     }
   },
   "importStatus": {
+    "defaultCommit": "afc21bc25f7d07cae9fb3103dc309240a16b9f49",
+    "kernelFiles": [
+      "state/invariants.ts", "state/replay.ts", "state/selectors.ts", "state/state-reducer.ts",
+      "state/state.ts", "state/store.ts", "state/task-graph.ts", "tool/response-envelope.ts",
+      "tool/sanitize.ts", "tool/types.ts", "tool/normalize-params.ts"
+    ],
     "runtimeSourceImported": true,
     "testsImported": true,
     "gitHistoryImported": false,
@@ -118,37 +128,44 @@
       {
         "upstreamPath": "packages/rpiv-todo/state/invariants.ts",
         "localPath": "state/invariants.ts",
-        "sha256": "fbbafd0194a8f3dda36a85e974a485590246f6246477b533089f36fa715150c6"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "0d775f9ebf160e4c588337e9b5bada975ff657a20716ae9a5168f85dbefe3875"
       },
       {
         "upstreamPath": "packages/rpiv-todo/state/replay.test.ts",
         "localPath": "state/replay.test.ts",
-        "sha256": "1e57f2d26e2d637580d5580916460acf939b3820e2deeb8497b2d5c9d56595f6"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "c6bffa087d0142dbd1ccad5245c952f72b129bc752756f15d69ceb44b9291399"
       },
       {
         "upstreamPath": "packages/rpiv-todo/state/replay.ts",
         "localPath": "state/replay.ts",
-        "sha256": "e5994626d9cd99fbf039b1e10abdb7d642b10f8fd578df5a1b3921633039444c"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "0109cfdaab08d5a4b5b615695a23eaf1aeae1180d65f8024940e14b39ac2799a"
       },
       {
         "upstreamPath": "packages/rpiv-todo/state/selectors.ts",
         "localPath": "state/selectors.ts",
-        "sha256": "8d39f82bc7e49abcf9480e24f00590bd3609ddec323cd25a98ae3efb9e1584ba"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "88e4d8e6c83c5630f0d566ea09c0268e04561ba214e51d8f744cceef34c73b35"
       },
       {
         "upstreamPath": "packages/rpiv-todo/state/state-reducer.test.ts",
         "localPath": "state/state-reducer.test.ts",
-        "sha256": "cc20b30fec9680b27b9ae1afbf22c5837ac0ab79bd8e0a9f8e8c34ccd02106ae"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "d1450a276fce6ff4d1eab0aaca4dabef35d3db5669248d5fb72fedb8d0e0e59d"
       },
       {
         "upstreamPath": "packages/rpiv-todo/state/state-reducer.ts",
         "localPath": "state/state-reducer.ts",
-        "sha256": "82153b078572a6d1ec2c8f8943b338df64ab8f371daf1ba1f5a4bc4cf95321c1"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "59a951a72738fb3476f7d070c6ba3a0b01bdbcd7aeb4e45cf87a89fce68ba58d"
       },
       {
         "upstreamPath": "packages/rpiv-todo/state/state.ts",
         "localPath": "state/state.ts",
-        "sha256": "f4eba088903593409555c7305c1aa8da627520a3905caf3e81f7bd7eff708717"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "10bff755663a00f4876658d7b17eca5fc28a9cbce6c00b2b70dab9d84fc6b028"
       },
       {
         "upstreamPath": "packages/rpiv-todo/state/store.test.ts",
@@ -158,7 +175,8 @@
       {
         "upstreamPath": "packages/rpiv-todo/state/store.ts",
         "localPath": "state/store.ts",
-        "sha256": "65dcadb64b7aa6c2ebb2ff6ae85d70112af88fab045302f1820bf23b14770c1b"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "f318f9b161603cafa04a486cdad4fe962d86e6c6c7e5260853f8d87a91e5efce"
       },
       {
         "upstreamPath": "packages/rpiv-todo/state/task-graph.test.ts",
@@ -168,7 +186,8 @@
       {
         "upstreamPath": "packages/rpiv-todo/state/task-graph.ts",
         "localPath": "state/task-graph.ts",
-        "sha256": "8bf3ec428bd4796b32dea5ee5c15a2930818fb0fccda0c6ee60b777cf426075b"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "06a385b0a776218974a8c9b0ecda8757ed851c5e232d6aa2aba25eb871cede89"
       },
       {
         "upstreamPath": "packages/rpiv-todo/todo-overlay.lifecycle.test.ts",
@@ -213,7 +232,8 @@
       {
         "upstreamPath": "packages/rpiv-todo/todo.register.test.ts",
         "localPath": "todo.register.test.ts",
-        "sha256": "4bcf5391d4e78d638b0f718637669e57d42eaefae2e0adaf7189ef69f031aabb"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "a327d62c51d7eafa7a1d82114097780f8f57f1a040bdcd85e92582424d70585d"
       },
       {
         "upstreamPath": "packages/rpiv-todo/todo.session-isolation.test.ts",
@@ -223,17 +243,20 @@
       {
         "upstreamPath": "packages/rpiv-todo/todo.ts",
         "localPath": "todo.ts",
-        "sha256": "6aa3f9c55b12882b8952ddbac93353377377d918f7589cf2384f8ec3c7dbefc7"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "ceff1cfc7ee82d0379b950a10190ee157933f48e6c7f48f2ee6e2d793c8252c7"
       },
       {
         "upstreamPath": "packages/rpiv-todo/tool/response-envelope.test.ts",
         "localPath": "tool/response-envelope.test.ts",
-        "sha256": "f3d0319e5f6e3a92212f4cbba6222b6c825821890b48d3d2b3b39ea8b25add7e"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "8a58c18bb85bd9e3aaa50d8fd134d0ee51ea047424322c9fc7677d5551225fa8"
       },
       {
         "upstreamPath": "packages/rpiv-todo/tool/response-envelope.ts",
         "localPath": "tool/response-envelope.ts",
-        "sha256": "69aa3f344092c7ab735588d6b71abbc3d3f132517a42e874a057361c9277dad3"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "238746fe633389077975977f21db1f5a29abf7967ff797f886b2b834ad7388c8"
       },
       {
         "upstreamPath": "packages/rpiv-todo/tool/sanitize.test.ts",
@@ -243,12 +266,26 @@
       {
         "upstreamPath": "packages/rpiv-todo/tool/sanitize.ts",
         "localPath": "tool/sanitize.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
         "sha256": "eea928b89bc7b1768e75f3123acb881e984fe1604435e6e2cd7b576a6006616c"
       },
       {
         "upstreamPath": "packages/rpiv-todo/tool/types.ts",
         "localPath": "tool/types.ts",
-        "sha256": "b5639465d1920e1eb0dfcbc636976d03c65a57b511264083353e16fb535690c2"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "438deadac3a723fc6abe1e6f42db3c24022d3be313253cd28c35dd3748624d04"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/normalize-params.ts",
+        "localPath": "tool/normalize-params.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "1897884ac155a43f3a5adbb8183e7b09837d7d6f0250f9254616475d7b52d6bb"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/normalize-params.test.ts",
+        "localPath": "tool/normalize-params.test.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "45feb604cbdb35eb73e2050e060e5ce405df64a98dec21c0c81397814aca3df9"
       },
       {
         "upstreamPath": "packages/rpiv-todo/view/format.test.ts",
@@ -258,7 +295,8 @@
       {
         "upstreamPath": "packages/rpiv-todo/view/format.ts",
         "localPath": "view/format.ts",
-        "sha256": "86e6055085c0a74adb86699333ebd998487713b804ef760baf0c1995f8ab1ed4"
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "a8c759b74128e9f3a2047d8a0e15496d04bef59a4180bc4fae6c336893a2aaa6"
       },
       {
         "upstreamPath": "packages/test-utils/session.ts",
@@ -277,7 +315,7 @@
         "adaptation": "Keep only Pi/UI/context mocks; remove workflow dependency and unrelated helpers."
       }
     ],
-    "hashesDescribe": "Original source bytes at the pinned commit, before local adaptation."
+    "hashesDescribe": "Original source bytes before local adaptation. Each file uses its explicit commit, or defaultCommit for retained 2.13.8 imports. kernelFiles are byte-for-byte copies of the current upstream pin."
   },
   "verification": {
     "npmMetadataRetrieved": true,
@@ -290,6 +328,15 @@
   "adaptations": [
     {
       "files": [
+        "state/invariants.ts", "state/replay.ts", "state/selectors.ts", "state/state-reducer.ts",
+        "state/state.ts", "state/store.ts", "state/task-graph.ts", "tool/response-envelope.ts",
+        "tool/sanitize.ts", "tool/types.ts", "tool/normalize-params.ts",
+        "state/state-reducer.test.ts", "state/replay.test.ts", "tool/response-envelope.test.ts", "tool/normalize-params.test.ts"
+      ],
+      "summary": "Refresh these kernel files and their selected regression suites byte-for-byte from pinned rpiv-todo 2.15.0. Keep todo/rpiv-todo-state identities and snapshot format. Other retained imports use the initial commit unless a per-file commit says otherwise. Packaging enforces every kernel hash. Upstream checks/updates are development-time work, never runtime downloads."
+    },
+    {
+      "files": [
         "package.json",
         "package-lock.json",
         "tsconfig.json",
@@ -297,7 +344,7 @@
         ".test/",
         "scripts/"
       ],
-      "summary": "Independent tooling and isolated tests; host modules remain peers. Selected test helpers have no workflow dependency."
+      "summary": "Independent tooling and isolated tests; Pi 1.4.0 development baseline, host modules remain peers. Preserve current upstream kernel .ts imports through no-emit TypeScript configuration. Selected test helpers have no workflow dependency."
     },
     {
       "files": [
@@ -307,7 +354,7 @@
         "locales/en.json",
         "locales/zh.json"
       ],
-      "summary": "Independent config/i18n identity; TUI-only lifecycle prewarm and shortcut registration after effective host keybindings; no protocol/persistence identity change."
+      "summary": "Independent config/i18n identity; TUI-only lifecycle prewarm and shortcut registration after effective host keybindings, including shared ASCII/control and Alt-prefixed input conflicts; no protocol/persistence identity change."
     },
     {
       "files": [
@@ -322,12 +369,13 @@
         "todo.ts",
         "view/todo-list.ts"
       ],
-      "summary": "Keep tool execution/schema unchanged; add bounded scrollable TUI /todos details and retain RPC notifications."
+      "summary": "Keep 2.15.0 tool execution/schema/argument normalization; add bounded scrollable TUI /todos details and retain RPC notifications. Tool presentation uses stable call IDs instead of current foreground subjects, labels batches and handles incomplete arguments, and shows in-band/host errors without altering envelopes."
     },
     {
       "files": [
         "todo-overlay.render.test.ts",
         "todo-overlay.shortcut.test.ts",
+        "todo.register.test.ts",
         "config.test.ts",
         "todo-overlay.lifecycle.test.ts",
         "todo.command.test.ts",
@@ -337,7 +385,7 @@
         "view/format.test.ts",
         "state/i18n-bridge.test.ts"
       ],
-      "summary": "Adapt namespace, TUI mode/registration timing and UI expectations to the new design; retain kernel/protocol regression coverage."
+      "summary": "Adapt namespace, TUI mode/registration timing and UI expectations to the new design; add error presentation, historical ID reuse and terminal input alias regressions; retain kernel/protocol regression coverage."
     }
   ]
 }

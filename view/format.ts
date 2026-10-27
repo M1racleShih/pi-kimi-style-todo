@@ -1,8 +1,6 @@
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { Text } from "@earendil-works/pi-tui";
 import { formatStatusLabel } from "../state/i18n-bridge.js";
-import { selectTaskSubjectById } from "../state/selectors.js";
-import type { TaskState } from "../state/state.js";
 import { sanitizeTerminalText } from "../tool/sanitize.js";
 import type { Task, TaskAction, TaskDetails, TaskMutationParams, TaskStatus } from "../tool/types.js";
 
@@ -101,26 +99,25 @@ export function formatCommandTaskLine(t: Task, glyph: string): string {
 // ---------------------------------------------------------------------------
 
 /**
- * `renderCall` body. Receives the parsed args, the theme, and the live
- * `TaskState` (resolved by the caller via `getState()`). Returns a `Text`
- * node identical to pre-refactor `todo.ts:507-525`.
+ * Render only call arguments. A current task with the same id is not proof of
+ * a historical call's subject (ids are reused after clear and across sessions).
  */
 export function renderTodoCall(
-	args: TaskMutationParams & { action: TaskAction },
+	args: TaskMutationParams & { action?: TaskAction },
 	theme: Theme,
-	state: TaskState,
 ): Text {
-	const glyph = ACTION_GLYPH[args.action] ?? args.action;
-	let text = theme.fg("toolTitle", theme.bold("todo ")) + theme.fg("muted", glyph);
+	let text = theme.fg("toolTitle", theme.bold("todo "));
+	if (args.action) text += theme.fg("muted", ACTION_GLYPH[args.action] ?? args.action);
 
 	if (args.action === "create" && args.subject) {
 		text += ` ${theme.fg("dim", sanitizeTerminalText(args.subject))}`;
+	} else if (args.action === "create" && Array.isArray(args.tasks)) {
+		text += ` ${theme.fg("dim", `${args.tasks.length} tasks`)}`;
 	} else if (
 		(args.action === "update" || args.action === "get" || args.action === "delete") &&
 		args.id !== undefined
 	) {
-		const subject = selectTaskSubjectById(state, args.id);
-		text += ` ${theme.fg("accent", subject ? sanitizeTerminalText(subject) : `#${args.id}`)}`;
+		text += ` ${theme.fg("accent", `#${args.id}`)}`;
 	} else if (args.action === "list" && args.status) {
 		text += ` ${theme.fg("muted", formatStatusLabel(args.status))}`;
 	}
@@ -130,11 +127,21 @@ export function renderTodoCall(
 /**
  * `renderResult` body. Inspects `details` to pick the per-action status echo
  * (only `create`/`update`/`delete` advertise a status; `list`/`get`/`clear`
- * fall back to plain `✓`). Identical visual output to pre-refactor
- * `todo.ts:533-565`.
+ * fall back to plain `✓`). In-band validation errors and host failures take
+ * precedence over the requested status; only their presentation changes.
  */
-export function renderTodoResult(result: { details?: unknown }, theme: Theme): Text {
+export function renderTodoResult(
+	result: { details?: unknown; content?: { type: string; text?: string }[] },
+	theme: Theme,
+	isError = false,
+): Text {
 	const details = result.details as TaskDetails | undefined;
+	const error = typeof details?.error === "string" ? details.error : isError
+		? result.content?.filter(block => block.type === "text").map(block => block.text ?? "").join("\n") ?? ""
+		: undefined;
+	if (error !== undefined) {
+		return new Text(theme.fg("error", `✗ ${sanitizeTerminalText(error).trim() || "Tool execution failed"}`), 0, 0);
+	}
 	let status: TaskStatus | undefined;
 	if (details) {
 		const params = details.params as TaskMutationParams;

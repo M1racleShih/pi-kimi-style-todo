@@ -14,13 +14,14 @@
  * `SUPPORTED_LOCALES` from the SDK. See `@juicesharp/rpiv-i18n` README →
  * "Contributing translations" for the full convention.
  *
- * Derived from pinned rpiv-todo 2.13.8 (see UPSTREAM.json). Tool name
+ * Initially derived from rpiv-todo 2.13.8; task kernel pinned to 2.15.0
+ * (see UPSTREAM.json). Tool name
  * "todo" and the rpiv-todo-state snapshot identity remain compatible;
  * the widget key and configuration/i18n namespace are independent.
  */
 
 import type { ExtensionAPI, ExtensionUIContext } from "@earendil-works/pi-coding-agent";
-import { getKeybindings, type KeyId } from "@earendil-works/pi-tui";
+import { getKeybindings, type KeyId, matchesKey } from "@earendil-works/pi-tui";
 import { COLLAPSE_KEY_OFF, resolveCollapseKey } from "./config.js";
 import { I18N_NAMESPACE } from "./state/i18n-bridge.js";
 import { replayFromBranch } from "./state/replay.js";
@@ -143,10 +144,19 @@ export default function (pi: ExtensionAPI, importOverlay: TodoOverlayImporter = 
 		// manager first so a simultaneous host-key edit cannot leave a hint
 		// for a shortcut the host is about to reject. This only reads config.
 		keybindings.reload?.();
-		const conflicts = Object.entries(keybindings.getResolvedBindings()).filter(([, keys]) =>
-			(typeof keys === "string" ? [keys] : keys ?? []).some(key => normalize(key) === normalize(requestedKey))
-		).map(([action]) => action);
 		if (requestedKey === COLLAPSE_KEY_OFF) return;
+		// Different key names can consume the same bytes (Ctrl+I/Tab, Ctrl+M/Enter,
+		// Ctrl+[/Esc, Alt+B/Alt+Left). Let the host matcher own protocol/OS rules;
+		// probe ASCII/control input and its Alt-prefixed form without changing
+		// global keyboard-protocol state or maintaining a second alias table.
+		const matchingInputs = Array.from({ length: 128 }, (_, code) => String.fromCharCode(code))
+			.flatMap(input => [input, `\x1b${input}`])
+			.filter(input => matchesKey(input, requestedKey as KeyId));
+		const conflicts = Object.entries(keybindings.getResolvedBindings()).filter(([, keys]) =>
+			(typeof keys === "string" ? [keys] : keys ?? []).some(key =>
+				normalize(key) === normalize(requestedKey) || matchingInputs.some(input => matchesKey(input, key as KeyId))
+			)
+		).map(([action]) => action);
 		if (conflicts.length) return `TODO shortcut ${requestedKey} disabled: conflicts with ${conflicts.join(", ")}. Set collapseKey in pi-kimi-style-todo/config.json and /reload.`;
 		collapseKey = requestedKey;
 		pi.registerShortcut(collapseKey as KeyId, {

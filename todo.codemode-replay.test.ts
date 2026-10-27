@@ -123,12 +123,14 @@ describe("todo calls made through codemode survive session replay (#290)", () =>
 		}
 	}
 
-	it("restores tasks created and updated only through codemode", async () => {
+	it("restores an encoded batch created and updated only through codemode", async () => {
 		const listed = await listAfterResume([
 			codemode(`
-await tools.todo({ action: "create", subject: "Task A" });
-await tools.todo({ action: "create", subject: "Task B" });
-await tools.todo({ action: "create", subject: "Task C" });
+await tools.todo({ action: "create", tasks: JSON.stringify([
+  JSON.stringify({ subject: "Task A" }),
+  JSON.stringify({ subject: "Task B" }),
+  JSON.stringify({ subject: "Task C" })
+]) });
 await tools.todo({ action: "update", id: 1, status: "in_progress" });
 text("ok");`),
 		]);

@@ -1,8 +1,8 @@
 # pi-kimi-style-todo
 
-一个独立的 Pi TODO 扩展：保留 [rpiv-todo](https://github.com/juicesharp/rpiv-mono/tree/afc21bc25f7d07cae9fb3103dc309240a16b9f49/packages/rpiv-todo) 的任务内核和会话恢复能力，提供 Kimi-inspired 的简洁列表。
+一个独立的 Pi TODO 扩展：保留 [rpiv-todo 2.15.0](https://github.com/juicesharp/rpiv-mono/tree/ce6d3530410812ca504ec294995581a52170f9e1/packages/rpiv-todo) 的任务内核和会话恢复能力，提供 Kimi-inspired 的简洁列表。
 
-**0.1.0 本地开发版，尚未发布 npm。** 下方是本地使用方法，不代表同名 npm 包已经可用。
+**0.1.0** · MIT · [npm](https://www.npmjs.com/package/pi-kimi-style-todo)
 
 ![合成任务在真实 Pi 终端中的列表](docs/preview.svg)
 
@@ -16,14 +16,24 @@
 - 有限行数优先展示进行中、待开始、完成项，选中后仍保持原始顺序。底部准确显示全部／部分数量。
 - `Ctrl+Shift+T` 折叠／展开；`Ctrl+T` 留给 Pi 的 thinking toggle。
 - `/todos` 打开可滚动的详情列表，显示 description、activeForm、owner、metadata 与依赖。方向键／PageUp／PageDown／Home／End 滚动，Esc 返回编辑器。
-- 原 `todo` 六种动作、完整 snapshot、旧会话读取、nested/codemode 持久化、branch 和 session 隔离继续保留。
+- `todo` 六种动作、`tasks[]` 原子批量创建、完整 snapshot、旧会话读取、nested/codemode 持久化、branch 和 session 隔离继续保留；兼容二次 JSON 编码的批量参数，恢复时跳过损坏快照。
 - print／JSON 下工具正常运行；RPC 的 `/todos` 使用通知，不绘制终端组件。
 
-## 本地使用
+## 安装与使用
 
-要求 Node **22.19+** 和 Pi。当前验证基线为 Linux、Node **24.18.0**、npm **11.8.0**、Pi **1.2.0**。
+要求 Node **22.19+** 和 Pi。当前验证基线为 Linux、Node **24.18.0**、npm **11.8.0**、Pi **1.4.0**。
 
 先禁用原 `rpiv-todo`（以及任何也注册 `todo` 的扩展），再加载本扩展。不要同时启用新旧包。
+
+### 从 npm 安装
+
+```sh
+pi install npm:pi-kimi-style-todo@0.1.0
+```
+
+安装后重新启动 Pi，或在当前会话执行 `/reload`。
+
+### 从本地源码加载
 
 ```sh
 cd /path/to/pi-kimi-style-todo
@@ -95,7 +105,7 @@ npm run test:tui   # 真实 Pi PTY：regular/fullscreen、resize、主题、输�
 
 ## 兼容范围与限制
 
-- 实测：Linux 上 Pi **1.2.0** 的 regular／fullscreen，以及 text／JSON／RPC。
+- 实测：Linux 上 Pi **1.4.0** 的 regular／fullscreen，以及 text／JSON／RPC。
 - 中文、组合字符、emoji 的列宽已有测试；具体字体、删除线和 IME 候选窗口仍取决于终端。未声称验证了 macOS、Windows 或真实操作系统 IME。
 - `Ctrl+Shift+T` 需要终端区分修饰键（Kitty／modifyOtherKeys 等）；若被终端截获或无法区分，配置其他空闲按键。极小终端可能只显示数量摘要或暂不绘制 widget。
 - 编辑器／HUD／工具渲染组合通过独立合成 probes 验证，不代表所有第三方扩展组合均已验证。
@@ -103,7 +113,7 @@ npm run test:tui   # 真实 Pi PTY：regular/fullscreen、resize、主题、输�
 
 ## 来源与许可
 
-基于 `@juicesharp/rpiv-todo@2.13.8`，固定提交 `afc21bc25f7d07cae9fb3103dc309240a16b9f49`。源码、locale 和测试的导入记录与原始哈希见 [UPSTREAM.json](UPSTREAM.json)，衍生范围见 [第三方声明](THIRD_PARTY_NOTICES.md)。
+任务内核固定为 `@juicesharp/rpiv-todo@2.15.0`，提交 `ce6d3530410812ca504ec294995581a52170f9e1`；初始界面及其余保留导入来自 2.13.8。逐文件来源、提交和原始哈希见 [UPSTREAM.json](UPSTREAM.json)，衍生范围见 [第三方声明](THIRD_PARTY_NOTICES.md)。内核不在运行时自动更新；上游同步方式及边界见[内核维护说明](docs/upstream-sync.md)。
 
 原创贡献采用 [MIT](LICENSE)；完整上游声明保留在 [licenses/rpiv-todo-MIT.txt](licenses/rpiv-todo-MIT.txt)。
 

@@ -122,6 +122,18 @@ export async function runTerminal(mode, { packedPath, smokeOnly = false, combina
     assert((await snapshot()).some(line => line.includes("Synthetic detail")));
     input("\x1b"); await sleep(150);
     await waitFor(lines => widget(lines).length === 7, "escape from details");
+    if (!combination) {
+      await prompt("invalid update");
+      const failed = await waitFor(lines => lines.some(line => line.includes("✗ #999 not found")), "in-band error presentation");
+      const errorRow = failed.findIndex(line => line.includes("✗ #999 not found"));
+      assert.notEqual(cellAt(errorRow, "✗").getFgColor(), cellAt(failed.findLastIndex(line => line.trim() === "Todo") + 1, "✓").getFgColor(), "error and success colors differ");
+      input("\x0f"); await sleep(150);
+      assert((await snapshot()).some(line => line.includes("✗ #999 not found")), "expanded result retains the error");
+      input("\x0f"); await sleep(150);
+      await prompt("invalid schema");
+      await waitFor(lines => lines.some(line => /✗ .*Validation failed for tool/.test(line)), "host schema error presentation");
+      assert.equal(widget(await snapshot()).length, 7, "failed tools do not change task state");
+    }
     const darkHeadingColor = cellAt((await snapshot()).findLastIndex(line => line.trim() === "Todo"), "T").getFgColor();
     await command("/fixture-light");
     const light = await waitFor(lines => widget(lines).length === 7, "light theme");
@@ -151,6 +163,19 @@ export async function runTerminal(mode, { packedPath, smokeOnly = false, combina
     await waitFor(lines => widget(lines).at(-1) === "all 5 items", "conflicting shortcut disabled");
     assert(raw.includes("TODO shortcut ctrl+t disabled"), "conflict diagnosis is shown");
     input("\x14"); await sleep(120); assert.equal(widget(await snapshot()).length, 7);
+    writeFileSync(join(configDir, "config.json"), '{"collapseKey":"ctrl+i"}'); await command("/reload");
+    await waitFor(lines => widget(lines).at(-1) === "all 5 items", "Ctrl+I/Tab conflict disabled");
+    assert(raw.includes("TODO shortcut ctrl+i disabled"), "terminal alias conflict is diagnosed");
+    input("/fixture-li"); await sleep(150); input("\t");
+    await waitFor(lines => lines.slice(-6).some(line => line.includes("/fixture-light")), "Tab still completes editor input");
+    assert.equal(widget(await snapshot()).length, 7, "Tab does not collapse the widget");
+    input("\x03"); await sleep(100);
+    writeFileSync(join(configDir, "config.json"), '{"collapseKey":"ctrl+m"}'); await command("/reload");
+    await waitFor(lines => widget(lines).at(-1) === "all 5 items", "Ctrl+M/Enter conflict disabled");
+    assert(raw.includes("TODO shortcut ctrl+m disabled"), "Enter alias conflict is diagnosed");
+    await prompt("enter alias probe");
+    await waitFor(lines => lines.some(line => line.includes("Enter submit survived.")), "Enter still submits editor input");
+    assert.equal(widget(await snapshot()).length, 7, "Enter does not collapse the widget");
     writeFileSync(join(configDir, "config.json"), '{}'); await command("/reload");
     await waitFor(lines => widget(lines).at(-1)?.includes("ctrl+shift+t to collapse"), "restore default shortcut");
     await prompt("seed large");
@@ -168,7 +193,7 @@ export async function runTerminal(mode, { packedPath, smokeOnly = false, combina
     assert(widget(short).some(line => line.includes("● 合成任务 16")));
     assert.equal(short.filter(line => /^\s*[○●✓] (?:建立|补充|编写|验证|更新|合成)/.test(line)).length, 2);
     await resize(120, 42);
-    await prompt("seed small"); await waitFor(lines => widget(lines).some(line => line.includes("all 5 items")), "restore small list");
+    await prompt("seed encoded"); await waitFor(lines => widget(lines).some(line => line.includes("all 5 items")), "restore list from double-encoded batch");
     await prompt("complete");
     const completed = await waitFor(lines => widget(lines).filter(line => line.startsWith("✓ ")).length === 5, "all completed");
     assert(widget(completed).at(-1).includes("all 5 items"));
@@ -177,6 +202,16 @@ export async function runTerminal(mode, { packedPath, smokeOnly = false, combina
     await prompt("clear");
     const clearedScreen = await waitFor(lines => widget(lines).length === 0, "clear unmount");
     assert.equal(clearedScreen.filter(line => /^\s*[○●✓] (?:建立|补充|编写|验证|更新|合成)/.test(line)).length, 0, "clear removes every widget row");
+    if (!combination) {
+      await prompt("reuse id");
+      const hasHistoricalId = lines => lines.some(line => line.trim() === "todo › #1") && widget(lines).some(line => line.includes("○ Replacement task"));
+      await waitFor(hasHistoricalId, "historical call after id reuse");
+      input("\x0f"); await sleep(150);
+      assert(hasHistoricalId(await snapshot()), "expansion does not relabel old calls with the replacement subject");
+      input("\x0f"); await sleep(150);
+      await command("/reload");
+      await waitFor(hasHistoricalId, "historical call after replay");
+    }
     await prompt("seed one");
     await waitFor(lines => widget(lines).length === 3 && widget(lines).at(-1).includes("all 1 items"), "single-item widget");
     await prompt("seed small");

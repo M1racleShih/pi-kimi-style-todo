@@ -27,12 +27,13 @@ const extension = loaded.extensions[0];
 assert.deepEqual([...extension.tools.keys()], ["todo"]);
 assert.deepEqual([...extension.commands.keys()], ["todos"]);
 assert.deepEqual([...extension.shortcuts.keys()], []); // TUI session_start binds after host keybindings are installed.
-console.log("PASS Pi 1.2.0 resource loading: one todo and /todos, TUI shortcut deferred; no errors/warnings");
+const hostVersion = JSON.parse(readFileSync(join(root, "node_modules/@earendil-works/pi-coding-agent/package.json"), "utf8")).version;
+console.log(`PASS Pi ${hostVersion} resource loading: one todo and /todos, TUI shortcut deferred; no errors/warnings`);
 
 const cli = resolve(root, "node_modules/@earendil-works/pi-coding-agent/dist/bundle/cli.js");
 const args = ["--import", join(root, "scripts/network-guard.mjs"), cli, "--offline", "--no-extensions", "--no-skills", "--no-prompt-templates", "--no-themes", "--no-context-files", "--no-mcp", "--no-session", "--no-approve", "--extension", process.env.KIMI_EXTENSION_PATH ?? root, "--extension", join(root, ".test/fixture-extension.ts"), "--model", "kimi-fixture/scripted", "--thinking", "off"];
-for (const mode of ["text", "json"]) {
-  const result = spawnSync(process.execPath, [...args, "--mode", mode, "--print", "seed small"], { cwd, env: process.env, encoding: "utf8", timeout: 30000 });
+for (const mode of ["text", "json"]) for (const scenario of ["seed small", "seed encoded"]) {
+  const result = spawnSync(process.execPath, [...args, "--mode", mode, "--print", scenario], { cwd, env: process.env, encoding: "utf8", timeout: 30000 });
   assert.equal(result.status, 0, result.stderr);
   assert.equal(result.stderr.trim(), "");
   assert(!result.stdout.includes("\x1b["), "headless stdout has no terminal sequences");
@@ -43,7 +44,7 @@ for (const mode of ["text", "json"]) {
     assert.equal(end.result.details.tasks.length, 5);
     assert.deepEqual(end.result.details.tasks.map((task: { status: string }) => task.status), ["completed", "completed", "in_progress", "pending", "pending"]);
   }
-  console.log(`PASS real Pi ${mode} mode: todo mutations without TUI`);
+  console.log(`PASS real Pi ${mode} mode (${scenario}): batch todo mutations without TUI`);
 }
 
 await new Promise<void>((resolve, reject) => {

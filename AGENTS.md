@@ -2,7 +2,7 @@
 
 ## Current boundary
 
-- This is a working local development version, not an npm-published release. Support completion and compatibility claims with evidence for the relevant final code.
+- Support completion, publication and compatibility claims with evidence for the relevant final code and release. Do not infer npm publication from a local version number or a merged PR.
 - Keep planning, task tracking, design decisions, handoffs and process artifacts out of this repository. User documentation, source provenance, licenses, tests and public contributor rules belong here.
 - If the sibling `../pi-kimi-style-todo-planning` checkout is available, read its `AGENTS.md`, `README.md`, `PLANNING.md` and `docs/handoff.md` before development. Do not copy its private content into this public repository. Its absence must never prevent building or using the extension.
 

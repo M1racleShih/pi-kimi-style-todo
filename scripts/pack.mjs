@@ -24,8 +24,14 @@ for (const group of ["dependencies", "devDependencies"]) {
 for (const name of ["@earendil-works/pi-ai", "@earendil-works/pi-coding-agent", "@earendil-works/pi-tui", "typebox"]) {
   assert.equal(manifest.peerDependencies[name], "*"); assert(!manifest.dependencies[name]);
 }
-const unchanged = ["state/invariants.ts", "state/replay.ts", "state/selectors.ts", "state/state-reducer.ts", "state/state.ts", "state/store.ts", "state/task-graph.ts", "tool/response-envelope.ts", "tool/sanitize.ts", "tool/types.ts"];
-for (const path of unchanged) assert.equal(sha256(join(root, path)), upstream.importStatus.files.find(file => file.localPath === path).sha256, `${path}: unexpected kernel/protocol modification`);
+const unchanged = ["state/invariants.ts", "state/replay.ts", "state/selectors.ts", "state/state-reducer.ts", "state/state.ts", "state/store.ts", "state/task-graph.ts", "tool/response-envelope.ts", "tool/sanitize.ts", "tool/types.ts", "tool/normalize-params.ts"];
+assert.deepEqual(upstream.importStatus.kernelFiles, unchanged);
+assert.equal(upstream.npm.gitHead, upstream.upstream.commit);
+for (const path of unchanged) {
+  const source = upstream.importStatus.files.find(file => file.localPath === path);
+  assert.equal(source?.commit, upstream.upstream.commit, `${path}: kernel source is not at the current pin`);
+  assert.equal(sha256(join(root, path)), source.sha256, `${path}: unexpected kernel/protocol modification`);
+}
 assert.equal(sha256(join(root, "licenses/rpiv-todo-MIT.txt")), upstream.verifiedUpstreamFiles.LICENSE.sha256);
 const dry = JSON.parse(command("npm", ["pack", "--dry-run", "--json", "--ignore-scripts"]))[0];
 const paths = dry.files.map(file => file.path).sort();

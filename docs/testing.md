@@ -13,10 +13,10 @@ npm run test:tui
 | 命令 | 覆盖范围 |
 | --- | --- |
 | `npm run check` | 所有分发 runtime TypeScript 的类型检查，无需构建 bundle |
-| `npm test` | reducer、graph、schema、envelope、replay、store、render、config、guidance、生命周期与实际 SDK reload/tree/compaction/resume；含实际 nested/codemode 持久化测试 |
-| `npm run test:load` | Pi 1.2.0 资源注册、无错误／warning、text／JSON／RPC；有／无可选 i18n |
+| `npm test` | reducer、graph、schema、envelope、replay、store、render、config、guidance、生命周期与实际 SDK reload/tree/compaction/resume；含批量原子性、坏快照回退与实际 encoded-batch nested/codemode 持久化测试 |
+| `npm run test:load` | Pi 1.4.0 资源注册、无错误／warning、text／JSON 的普通及二次编码批量创建、RPC；有／无可选 i18n |
 | `npm run test:tui` | 实际 Pi CLI + POSIX PTY + xterm 屏幕解析：regular/fullscreen、120×42／80×24／80×12／resize、dark/light、快捷键、焦点、/todos、/reload、真实会话重入、空／溢出／全完成；组合 editor/footer/tool-renderer probes |
-| `npm run test:pack` | npm dry-run 白名单与真正 tarball、隔离 npm 安装、无可选 i18n、资源/CLI 和两种终端模式 smoke |
+| `npm run test:pack` | 11 个内核文件与固定上游提交／SHA-256 一致、npm dry-run 白名单与真正 tarball、隔离 npm 安装、无可选 i18n、资源/CLI 和两种终端模式 smoke |
 | `npm run verify` | check + test + test:load + test:pack；完整 TUI 矩阵仍需单独运行 |
 
 ## 隔离边界
@@ -25,9 +25,11 @@ npm run test:tui
 
 PTY 检查实际终端单元格中的粗体、删除线、色彩、行数、内容和按键效果。失败／退出均清理子进程。合成 editor/footer/tool-renderer probes 检查的是 Pi 组合接缝，不代表验证了所有第三方产品。
 
+工具渲染回归通过注册的 execute／renderCall／renderResult 接口验证错误展示、控制序列清理和 clear 后 ID 重用的稳定标签；快捷键回归通过 session_start 和宿主匹配器验证共享输入冲突、显式解绑，以及不同修饰键仍可使用。真实 regular／fullscreen PTY 使用普通与二次编码的 tasks[] 批量创建，进一步检查 in-band／schema 错误及展开、历史调用重绘与 reload，以及配置 ctrl+i／ctrl+m 后 Tab 仍能补全、Enter 仍能提交。组合 probe 替换了工具 renderer，所以工具展示断言在独立 TODO 场景执行，快捷键断言也覆盖组合场景。
+
 ## 已覆盖平台与未覆盖项
 
-基线：Linux、Node 24.18.0、npm 11.8.0、Pi 1.2.0。宿主 API 要求 Node >=22.19；其他 Node 版本、macOS、Windows、真实操作系统 IME 及每一种终端字体／键盘协议未逐一验证。peer `*` 遵循 Pi 的宿主依赖约定，不代表承诺所有宿主版本。
+基线：Linux、Node 24.18.0、npm 11.8.0、Pi 1.4.0。宿主 API 要求 Node >=22.19；其他 Node 版本、macOS、Windows、真实操作系统 IME 及每一种终端字体／键盘协议未逐一验证。peer `*` 遵循 Pi 的宿主依赖约定，不代表承诺所有宿主版本。
 
 ## 更新公开预览
 

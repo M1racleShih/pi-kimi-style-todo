@@ -53,6 +53,8 @@
 
 键在加载时解析，在首个 TUI session_start 获取宿主有效绑定后注册；冲突时禁用并提示改键。提示使用已注册键，不使用尚未 `/reload` 的新配置。`Ctrl+T` 保留为 Pi thinking toggle。
 
+冲突检测不仅比较按键名称，还用宿主匹配器检查共享的 ASCII／控制字符及 Alt 前缀输入。例如 `ctrl+i` 与 Tab、`ctrl+m` 与 Enter、`ctrl+[` 与 Esc 可能匹配同一输入；宿主仍绑定这些输入时，TODO 不会注册对应快捷键。显式解除宿主绑定后，空闲键仍可使用；不会把 `ctrl+shift+t` 当作 `ctrl+t` 禁用。
+
 如果终端把 Ctrl+Shift+T 当成自己的新标签页操作，或不能单独报告 Shift，请改为空闲的 `alt+o` 等键。不会修改用户 Pi keybindings 文件。
 
 ## 本地化

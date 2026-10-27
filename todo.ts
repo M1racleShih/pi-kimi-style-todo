@@ -17,7 +17,8 @@ import { loadConfig, validateGuidanceFields } from "./config.js";
 import { formatStatusLabel, t } from "./state/i18n-bridge.js";
 import { selectTasksByStatus, selectTodoCounts, selectVisibleTasks } from "./state/selectors.js";
 import { applyTaskMutation, changesState } from "./state/state-reducer.js";
-import { commitState, getRenderState, getState, sid } from "./state/store.js";
+import { commitState, getState, sid } from "./state/store.js";
+import { prepareTodoArguments } from "./tool/normalize-params.js";
 import { buildToolResult } from "./tool/response-envelope.js";
 import {
 	COMMAND_NAME,
@@ -62,6 +63,7 @@ export const DEFAULT_PROMPT_GUIDELINES: string[] = [
 	"Task status is a 4-state machine: pending → in_progress → completed, plus deleted as a tombstone. Pass activeForm (present-continuous label, e.g. 'researching existing tool') when marking in_progress.",
 	'To change a task\'s status, call update with the task id and the target status, e.g. {"action":"update","id":3,"status":"completed"} or {"action":"update","id":3,"status":"in_progress","activeForm":"writing tests"}. status is the field that changes the task; an update without a mutable field (status or another) is rejected.',
 	"Use blockedBy to express dependencies (A is blocked by B). On create, pass blockedBy as the initial set. On update, use addBlockedBy / removeBlockedBy (additive merge — do not resend the full array). Cycles are rejected.",
+	"To create several independent tasks at once, pass create with tasks: [{subject}, ...]. Do not also pass subject. tasks[] cannot blockedBy each other (ids do not exist until the call commits); create the prerequisite first, then the dependent with blockedBy. Dependency chains stay single-create.",
 	"list hides tombstoned (deleted) tasks by default; pass includeDeleted:true to see them. Pass status to filter by a single status.",
 	"Subject must be short and imperative (e.g. 'Research existing tool'); description is for long-form detail. activeForm is a present-continuous label shown while in_progress.",
 ];
@@ -72,10 +74,12 @@ export function registerTodoTool(pi: ExtensionAPI): void {
 		name: TOOL_NAME,
 		label: TOOL_LABEL,
 		description:
-			"Manage a task list for tracking multi-step progress. Actions: create (new task), update (change status/fields/dependencies), list (all tasks, optionally filtered by status), get (single task details), delete (tombstone), clear (reset all). Status: pending → in_progress → completed, plus deleted tombstone. Use this to plan and track multi-step work like research, design, and implementation.",
+			"Manage a task list for tracking multi-step progress. Actions: create (new task, or several independent tasks at once via tasks[]), update (change status/fields/dependencies), list (all tasks, optionally filtered by status), get (single task details), delete (tombstone), clear (reset all). Status: pending → in_progress → completed, plus deleted tombstone. Use this to plan and track multi-step work like research, design, and implementation.",
 		promptSnippet: guidance.promptSnippet ?? DEFAULT_PROMPT_SNIPPET,
 		promptGuidelines: guidance.promptGuidelines ?? DEFAULT_PROMPT_GUIDELINES,
 		parameters: TodoParamsSchema,
+		// Decode only expected array/object shapes; malformed values still reach schema validation.
+		prepareArguments: prepareTodoArguments,
 
 		async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
 			const result = applyTaskMutation(getState(sid(ctx)), params.action, params as TaskMutationParams);
@@ -89,20 +93,15 @@ export function registerTodoTool(pi: ExtensionAPI): void {
 			return toolResult;
 		},
 
-		// renderCall reflects the FOREGROUND slot, not the calling session's. Pi's
-		// `ToolRenderContext` carries no session identity (no sessionManager/sessionId),
-		// so this ctx-less hook cannot re-key by caller. For the foreground session's
-		// own transcript that is exactly right. A detached/child call rendered in the
-		// lane-transcript viewer whose task lives only in the child's slot misses the
-		// foreground lookup and falls back to `#<id>` (see renderTodoCall). That is the
-		// safe outcome: per-session ids restart at 1, so searching sibling slots could
-		// surface the WRONG subject — the `#<id>` fallback is intentional, not a gap.
+		// Calls have no historical snapshot or session identity, including in HTML
+		// exports. Render their stable arguments, never a subject from the live store:
+		// clear/replay or another session may reuse the same numeric id.
 		renderCall(args, theme, _context) {
-			return renderTodoCall(args as never, theme, getRenderState());
+			return renderTodoCall(args as never, theme);
 		},
 
-		renderResult(result, _opts, theme, _context) {
-			return renderTodoResult(result, theme);
+		renderResult(result, _opts, theme, context) {
+			return renderTodoResult(result, theme, context?.isError);
 		},
 	});
 }
