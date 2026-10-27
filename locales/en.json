@@ -1,0 +1,22 @@
+{
+  "status.pending": "pending",
+  "status.in_progress": "in progress",
+  "status.completed": "completed",
+  "status.deleted": "deleted",
+
+  "overlay.heading": "Todo",
+  "overlay.all": "all {total} items",
+  "overlay.showing": "showing {shown} of {total} items",
+  "overlay.summary": "{total} items · {done} completed",
+  "overlay.hidden": "{count} completed hidden",
+  "overlay.collapseHint": "{key} to collapse",
+  "overlay.more": "more",
+  "overlay.expandHint": "{key} to expand",
+  "overlay.collapsed": "collapsed",
+
+  "command.no_todos": "No todos yet. Ask the agent to add some!",
+  "command.requires_interactive": "/todos requires interactive mode",
+  "command.section.pending": "── Pending ──",
+  "command.section.in_progress": "── In Progress ──",
+  "command.section.completed": "── Completed ──"
+}

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2023", "module": "NodeNext", "moduleResolution": "NodeNext",
+    "strict": true, "noEmit": true, "allowImportingTsExtensions": true, "skipLibCheck": true, "types": ["node"],
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["index.ts", "todo.ts", "config.ts", "todo-overlay.ts", "state/**/*.ts", "tool/**/*.ts", "view/**/*.ts"],
+  "exclude": ["**/*.test.ts"]
+}

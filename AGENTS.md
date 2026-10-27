@@ -2,7 +2,7 @@
 
 ## Current boundary
 
-- This is a documentation-only bootstrap, not a working or published extension. Do not claim implementation or test success before evidence exists.
+- Support completion, publication and compatibility claims with evidence for the relevant final code and release. Do not infer npm publication from a local version number or a merged PR.
 - Keep planning, task tracking, design decisions, handoffs and process artifacts out of this repository. User documentation, source provenance, licenses, tests and public contributor rules belong here.
 - If the sibling `../pi-kimi-style-todo-planning` checkout is available, read its `AGENTS.md`, `README.md`, `PLANNING.md` and `docs/handoff.md` before development. Do not copy its private content into this public repository. Its absence must never prevent building or using the extension.
 
@@ -20,5 +20,5 @@
 - Never import credentials, real sessions, account profiles, private endpoints, caches, backups, generated skills or unchecked logs.
 - Pin runtime dependencies and development tools, commit the lockfile, and install with lifecycle scripts disabled. Host-provided Pi packages belong in peer dependencies, not bundled runtime dependencies.
 - Runtime changes require meaningful unit tests, resource-load checks and real terminal checks, including both regular and fullscreen modes. Fixtures must be synthetic and must not contact providers or read production data.
-- Do not invent verification commands: this bootstrap intentionally has no package manifest or test scripts. Establish and document them when the implementation is imported.
+- Use `npm ci --ignore-scripts`, `npm run verify` and `npm run test:tui`. The verification entry points establish disposable environments; do not bypass them with tests pointed at real agent state. `test:pack` installs its own generated tarball and runs resource/CLI/PTY smoke checks. See docs/testing.md.
 - Do not spawn other agents, publish npm packages, create release tags or change other repositories without explicit human authorization for that action.

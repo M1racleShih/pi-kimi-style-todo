@@ -1,21 +1,25 @@
 {
-  "schemaVersion": 1,
-  "recordedAt": "2026-10-23",
+  "schemaVersion": 2,
+  "recordedAt": "2026-10-27",
+  "initialUpstream": {
+    "version": "2.13.8",
+    "commit": "afc21bc25f7d07cae9fb3103dc309240a16b9f49"
+  },
   "upstream": {
     "repository": "https://github.com/juicesharp/rpiv-mono.git",
     "directory": "packages/rpiv-todo",
-    "commit": "afc21bc25f7d07cae9fb3103dc309240a16b9f49",
+    "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
     "package": "@juicesharp/rpiv-todo",
-    "version": "2.13.8",
+    "version": "2.15.0",
     "license": "MIT",
     "copyright": "Copyright (c) 2026 juicesharp"
   },
   "npm": {
-    "metadataUrl": "https://registry.npmjs.org/@juicesharp%2frpiv-todo/2.13.8",
-    "gitHead": "afc21bc25f7d07cae9fb3103dc309240a16b9f49",
-    "tarball": "https://registry.npmjs.org/@juicesharp/rpiv-todo/-/rpiv-todo-2.13.8.tgz",
-    "integrity": "sha512-PY+vo3fDZdccNwKXyDtdR4fOqiZr1NYph/UaS49mr1DLNn2lpirtWRc1577uS5/3r5NkZVM3owWdsy6ewxmPCw==",
-    "shasum": "89eb89e961653bc669a3bc06c95479349c1d689d"
+    "metadataUrl": "https://registry.npmjs.org/@juicesharp%2frpiv-todo/2.15.0",
+    "gitHead": "ce6d3530410812ca504ec294995581a52170f9e1",
+    "tarball": "https://registry.npmjs.org/@juicesharp/rpiv-todo/-/rpiv-todo-2.15.0.tgz",
+    "integrity": "sha512-8WfYssdgQgSWzFNsRzdw5Z6ZJIjO2ecM/YqEzYpR/ore+Hh5aNmafGVy94uFbIofAv2wGGitx5e3J/ucRrViXQ==",
+    "shasum": "d614cedc77fd57e8d2bd1da5c55994a1881b38d7"
   },
   "verifiedUpstreamFiles": {
     "LICENSE": {
@@ -23,24 +27,365 @@
       "retainedAs": "licenses/rpiv-todo-MIT.txt"
     },
     "package.json": {
-      "sha256": "854847148029d45f238106a0bf34b57a2c65a61fb7f2a69309eb50a7559315e2",
+      "sha256": "971002e16d3f2c4ad20244d45eae4b4b391444974ec82286a23d4fe07e01e2fc",
       "retainedAs": null
     }
   },
   "importStatus": {
-    "runtimeSourceImported": false,
-    "testsImported": false,
+    "defaultCommit": "afc21bc25f7d07cae9fb3103dc309240a16b9f49",
+    "kernelFiles": [
+      "state/invariants.ts", "state/replay.ts", "state/selectors.ts", "state/state-reducer.ts",
+      "state/state.ts", "state/store.ts", "state/task-graph.ts", "tool/response-envelope.ts",
+      "tool/sanitize.ts", "tool/types.ts", "tool/normalize-params.ts"
+    ],
+    "runtimeSourceImported": true,
+    "testsImported": true,
     "gitHistoryImported": false,
     "retainedUpstreamFiles": [
       "licenses/rpiv-todo-MIT.txt"
-    ]
+    ],
+    "files": [
+      {
+        "upstreamPath": "packages/rpiv-todo/config.test.ts",
+        "localPath": "config.test.ts",
+        "sha256": "f42453ecbedb5e372aadd24647e445fdec7d84fa5cc0a76eceff32ae4c83ee85"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/config.ts",
+        "localPath": "config.ts",
+        "sha256": "3fe24b3d3b128cabcbafc80a41f72b20907fd0edbdd84c8c57c391e27ffd76db"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/index.ts",
+        "localPath": "index.ts",
+        "sha256": "509904d71a601ba2e2694c3f0fda1f014553eaafde1515ddd99dab8bb123d85a"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/lazy-overlay.regression.test.ts",
+        "localPath": "lazy-overlay.regression.test.ts",
+        "sha256": "829bf8a091109c9b3e4c30103f0eaaa6a0805e24148aa3ace3acfec4ed75b913"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/de.json",
+        "localPath": "locales/de.json",
+        "sha256": "a4ad7a630c88fd35ad7e43ddcedb90f002099da60bbbaddd8ee133235bee25cb"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/en.json",
+        "localPath": "locales/en.json",
+        "sha256": "b2f0b7e335e7d013ae05f5c4902cf60c46477d1070a35da7b9bcd3c495abf4d6"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/es.json",
+        "localPath": "locales/es.json",
+        "sha256": "7caa227c334010a61deb5bf3a896a96918299e5a8b1d619b94d94a4463ddc5bb"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/fr.json",
+        "localPath": "locales/fr.json",
+        "sha256": "929f57f77111d63f05662d9b1c4f0eeacb502be8848e399673431c26fe1b78d0"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/pt-BR.json",
+        "localPath": "locales/pt-BR.json",
+        "sha256": "7cde333677e2c57c4a3bad7a70d78b8db627a6ec443935f4e434edccf1e9e2b3"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/pt.json",
+        "localPath": "locales/pt.json",
+        "sha256": "e621baac2d49bce89204ad22e9b6946039e837c3438dfae078ba2cf7ab1fc3f6"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/ru.json",
+        "localPath": "locales/ru.json",
+        "sha256": "18d4b269135eb988805d7b96f40ff691b9d9745ae036747c643f88a346826605"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/uk.json",
+        "localPath": "locales/uk.json",
+        "sha256": "85bef4b5e2f408fe972aec60d890813cd2414aea9afead99d076ed495bef8d8e"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/locales/zh.json",
+        "localPath": "locales/zh.json",
+        "sha256": "32dfe0555efc9bdfd7a7e1b27dfb3feb4d66c6db3dc499bff0f93fa71aa0d5d2"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/i18n-bridge.shim.test.ts",
+        "localPath": "state/i18n-bridge.shim.test.ts",
+        "sha256": "7ae5dcbdf355b8978ae57525edfcbc74699cf7b7dcd8df20bbe6f9821b70f33f"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/i18n-bridge.test.ts",
+        "localPath": "state/i18n-bridge.test.ts",
+        "sha256": "008f611faf5f1ffd6b26ecc052378a9033727eeda3f63f1d3778f77a8ca588d3"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/i18n-bridge.ts",
+        "localPath": "state/i18n-bridge.ts",
+        "sha256": "b84a2076629ed7c4a123f714ce250e6988bd2d92ff0fbf5d19bb4812a13d3f2d"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/invariants.ts",
+        "localPath": "state/invariants.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "0d775f9ebf160e4c588337e9b5bada975ff657a20716ae9a5168f85dbefe3875"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/replay.test.ts",
+        "localPath": "state/replay.test.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "c6bffa087d0142dbd1ccad5245c952f72b129bc752756f15d69ceb44b9291399"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/replay.ts",
+        "localPath": "state/replay.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "0109cfdaab08d5a4b5b615695a23eaf1aeae1180d65f8024940e14b39ac2799a"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/selectors.ts",
+        "localPath": "state/selectors.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "88e4d8e6c83c5630f0d566ea09c0268e04561ba214e51d8f744cceef34c73b35"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/state-reducer.test.ts",
+        "localPath": "state/state-reducer.test.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "d1450a276fce6ff4d1eab0aaca4dabef35d3db5669248d5fb72fedb8d0e0e59d"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/state-reducer.ts",
+        "localPath": "state/state-reducer.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "59a951a72738fb3476f7d070c6ba3a0b01bdbcd7aeb4e45cf87a89fce68ba58d"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/state.ts",
+        "localPath": "state/state.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "10bff755663a00f4876658d7b17eca5fc28a9cbce6c00b2b70dab9d84fc6b028"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/store.test.ts",
+        "localPath": "state/store.test.ts",
+        "sha256": "a60cf67821e9307a1483cd2878349ec02da29be32f3bfd401e738839f2e5ef9b"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/store.ts",
+        "localPath": "state/store.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "f318f9b161603cafa04a486cdad4fe962d86e6c6c7e5260853f8d87a91e5efce"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/task-graph.test.ts",
+        "localPath": "state/task-graph.test.ts",
+        "sha256": "efaefe60e20a7e00251d694bd2f23c6a0f758f284a69bc9999eb5dd11c9e3f66"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/state/task-graph.ts",
+        "localPath": "state/task-graph.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "06a385b0a776218974a8c9b0ecda8757ed851c5e232d6aa2aba25eb871cede89"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo-overlay.lifecycle.test.ts",
+        "localPath": "todo-overlay.lifecycle.test.ts",
+        "sha256": "3f5fa26d0171de03772966997ec70655d80238eb9c8eb84f9f9c879ba6a91afb"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo-overlay.render.test.ts",
+        "localPath": "todo-overlay.render.test.ts",
+        "sha256": "fdf38347308e5f50aaf23d7afd6406052dbaec34b5325a0c36f5c2dfc22f780d"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo-overlay.shortcut.test.ts",
+        "localPath": "todo-overlay.shortcut.test.ts",
+        "sha256": "3de625309ac37cf0a00864b1c7f0dab96b6d5aa378b13f127feb885a47fe6d92"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo-overlay.ts",
+        "localPath": "todo-overlay.ts",
+        "sha256": "bcc44d001ff08cc4c42d019163d78214edc9df2f3ba9219080f01f13ad8520e3"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo.codemode-replay.test.ts",
+        "localPath": "todo.codemode-replay.test.ts",
+        "sha256": "2dba4b368f5a299ff1e9dca1c414ffa13494b3c19b205da838f030d86433cbb7"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo.command.test.ts",
+        "localPath": "todo.command.test.ts",
+        "sha256": "c62f9bac13d7a317756e5b7872c94319b1fc85a0b72aeb4b1d12769796f244fa"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo.guidance.test.ts",
+        "localPath": "todo.guidance.test.ts",
+        "sha256": "f3f5284ffd0a7a6adc75716424bdd87e100311745ed0ec1fb1096e383e73a07f"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo.invalidation.test.ts",
+        "localPath": "todo.invalidation.test.ts",
+        "sha256": "05d855119c0f38f06edc750a0747db7837cb8bb7fcb0a260ddd116d79f4e20f3"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo.register.test.ts",
+        "localPath": "todo.register.test.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "a327d62c51d7eafa7a1d82114097780f8f57f1a040bdcd85e92582424d70585d"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo.session-isolation.test.ts",
+        "localPath": "todo.session-isolation.test.ts",
+        "sha256": "bedb31e941402394f5c5657c0d82ebeefb3a51bc8f8d295d568d4542e252e685"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/todo.ts",
+        "localPath": "todo.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "ceff1cfc7ee82d0379b950a10190ee157933f48e6c7f48f2ee6e2d793c8252c7"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/response-envelope.test.ts",
+        "localPath": "tool/response-envelope.test.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "8a58c18bb85bd9e3aaa50d8fd134d0ee51ea047424322c9fc7677d5551225fa8"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/response-envelope.ts",
+        "localPath": "tool/response-envelope.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "238746fe633389077975977f21db1f5a29abf7967ff797f886b2b834ad7388c8"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/sanitize.test.ts",
+        "localPath": "tool/sanitize.test.ts",
+        "sha256": "25e7e0e04b21c0a982029399dc33b88cf0dff286a2241a331810de8f5eac802b"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/sanitize.ts",
+        "localPath": "tool/sanitize.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "eea928b89bc7b1768e75f3123acb881e984fe1604435e6e2cd7b576a6006616c"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/types.ts",
+        "localPath": "tool/types.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "438deadac3a723fc6abe1e6f42db3c24022d3be313253cd28c35dd3748624d04"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/normalize-params.ts",
+        "localPath": "tool/normalize-params.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "1897884ac155a43f3a5adbb8183e7b09837d7d6f0250f9254616475d7b52d6bb"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/tool/normalize-params.test.ts",
+        "localPath": "tool/normalize-params.test.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "45feb604cbdb35eb73e2050e060e5ce405df64a98dec21c0c81397814aca3df9"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/view/format.test.ts",
+        "localPath": "view/format.test.ts",
+        "sha256": "7f247fa59c442195f94d97b8c704e872bf2158a929b5b3c962a5594af99c2ad4"
+      },
+      {
+        "upstreamPath": "packages/rpiv-todo/view/format.ts",
+        "localPath": "view/format.ts",
+        "commit": "ce6d3530410812ca504ec294995581a52170f9e1",
+        "sha256": "a8c759b74128e9f3a2047d8a0e15496d04bef59a4180bc4fae6c336893a2aaa6"
+      },
+      {
+        "upstreamPath": "packages/test-utils/session.ts",
+        "localPath": ".test/session.ts",
+        "sha256": "b12406e2b547ca8da9af09e9fecb3869eee919570290da839ba7a7c657f1adf8"
+      },
+      {
+        "upstreamPath": "packages/test-utils/theme.ts",
+        "localPath": ".test/theme.ts",
+        "sha256": "c6374a08c8f64c9ad69d2b28d2836ff3dddb81ffb400c3e1436d5454a8cac27f"
+      },
+      {
+        "upstreamPath": "packages/test-utils/pi.ts",
+        "localPath": ".test/pi.ts",
+        "sha256": "1bcc733c2efe181eb50e40b92bf9bd11c585abbc91364130557de6c67d5f666d",
+        "adaptation": "Keep only Pi/UI/context mocks; remove workflow dependency and unrelated helpers."
+      }
+    ],
+    "hashesDescribe": "Original source bytes before local adaptation. Each file uses its explicit commit, or defaultCommit for retained 2.13.8 imports. kernelFiles are byte-for-byte copies of the current upstream pin."
   },
   "verification": {
     "npmMetadataRetrieved": true,
     "npmGitHeadMatchesRecordedCommit": true,
     "commitPackageVersionVerified": true,
     "commitPackageLicenseVerified": true,
-    "npmTarballDownloaded": false,
-    "npmTarballIntegrityVerified": false
-  }
+    "npmTarballDownloaded": true,
+    "npmTarballIntegrityVerified": true
+  },
+  "adaptations": [
+    {
+      "files": [
+        "state/invariants.ts", "state/replay.ts", "state/selectors.ts", "state/state-reducer.ts",
+        "state/state.ts", "state/store.ts", "state/task-graph.ts", "tool/response-envelope.ts",
+        "tool/sanitize.ts", "tool/types.ts", "tool/normalize-params.ts",
+        "state/state-reducer.test.ts", "state/replay.test.ts", "tool/response-envelope.test.ts", "tool/normalize-params.test.ts"
+      ],
+      "summary": "Refresh these kernel files and their selected regression suites byte-for-byte from pinned rpiv-todo 2.15.0. Keep todo/rpiv-todo-state identities and snapshot format. Other retained imports use the initial commit unless a per-file commit says otherwise. Packaging enforces every kernel hash. Upstream checks/updates are development-time work, never runtime downloads."
+    },
+    {
+      "files": [
+        "package.json",
+        "package-lock.json",
+        "tsconfig.json",
+        "vitest.config.ts",
+        ".test/",
+        "scripts/"
+      ],
+      "summary": "Independent tooling and isolated tests; Pi 1.4.0 development baseline, host modules remain peers. Preserve current upstream kernel .ts imports through no-emit TypeScript configuration. Selected test helpers have no workflow dependency."
+    },
+    {
+      "files": [
+        "index.ts",
+        "config.ts",
+        "state/i18n-bridge.ts",
+        "locales/en.json",
+        "locales/zh.json"
+      ],
+      "summary": "Independent config/i18n identity; TUI-only lifecycle prewarm and shortcut registration after effective host keybindings, including shared ASCII/control and Alt-prefixed input conflicts; no protocol/persistence identity change."
+    },
+    {
+      "files": [
+        "todo-overlay.ts",
+        "view/format.ts",
+        "view/layout.ts"
+      ],
+      "summary": "Compact Kimi-inspired view, stable task order, bounded priority clipping, accurate counts, effective shortcut hints and display-only completion policies."
+    },
+    {
+      "files": [
+        "todo.ts",
+        "view/todo-list.ts"
+      ],
+      "summary": "Keep 2.15.0 tool execution/schema/argument normalization; add bounded scrollable TUI /todos details and retain RPC notifications. Tool presentation uses stable call IDs instead of current foreground subjects, labels batches and handles incomplete arguments, and shows in-band/host errors without altering envelopes."
+    },
+    {
+      "files": [
+        "todo-overlay.render.test.ts",
+        "todo-overlay.shortcut.test.ts",
+        "todo.register.test.ts",
+        "config.test.ts",
+        "todo-overlay.lifecycle.test.ts",
+        "todo.command.test.ts",
+        "todo.session-isolation.test.ts",
+        "todo.guidance.test.ts",
+        "lazy-overlay.regression.test.ts",
+        "view/format.test.ts",
+        "state/i18n-bridge.test.ts"
+      ],
+      "summary": "Adapt namespace, TUI mode/registration timing and UI expectations to the new design; add error presentation, historical ID reuse and terminal input alias regressions; retain kernel/protocol regression coverage."
+    }
+  ]
 }
